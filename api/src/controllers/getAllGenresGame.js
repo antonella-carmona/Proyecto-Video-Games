@@ -4,14 +4,25 @@ const {KEY} = process.env;
 
 
 const getGenres = async () =>{
-  //_______obtener el arr results con todos los elementos____________  
+  //_______obtener el arr results con todos los objetos____________  
   const {data} = await axios.get(`https://api.rawg.io/api/genres?key=${KEY}`);
-  //_______quedarme con todos los name de cada elemento______________
+
+
+  //_______quedarme con todos los name de los generos de cada objeto--> map devuelve nuevo arr modificado______________
   const responseApi = await data.results.map( gen => gen.name)
- //_________por cada elemento del arr agarra name y guarda en la bdd del models Genres_________ 
-  responseApi.forEach(element => {
+
+  //____________________________________________________________________________
+  //FALTA ALGO --> hace lo mismo
+  const mapName = responseApi.map((elm) => {
+  
+    return { name: elm };
+  });
+  //____________________________________________________________________________
+ //_________por cada objeto del arr agarra name y guarda en la bdd del models Genres_________ 
+ //->forEach itera sobre el arr
+  mapName.forEach(element => {
         Genres.findOrCreate({
-            where: {name: element}
+            where: {name: element.name}
         })
   });
 

@@ -2,17 +2,20 @@
 const {KEY} = process.env;
 const URL = "https://api.rawg.io/api/games";
 const axios = require("axios");
-const {Videogame} = require("../db")
+const {Videogame, Genres} = require("../db");
 
 //findbypk --> trae por id los caracteres de un game de la bdd
 //__________________________________________________________________
 //Debe funcionar tanto para los games de la API como para los de la bdd
 // este metodo nos ayuda acelerar la busqueda dentro de la base de datos
-//_____________________________________________
-//LLAMADO A API PARA OBTENER EL DETALLE DEL POKEMON
-//     const gameDetail = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+//___________________________________________________________________
+
 const getApiGamesById = async (id)=>{
-  const {data} = await axios(`${URL}/${id}?key=${KEY}`)
+ 
+
+  let {data} = await axios(`${URL}/${id}?key=${KEY}`)
+  
+
   if(data){
     return {
         id: data.id,
@@ -30,13 +33,46 @@ const getApiGamesById = async (id)=>{
   
 }
 //_____________________________________________
+//FN PARA TRAER TODO DE LA BDD FILTRADO 
+// const bD= await Videogame.findOne(
+//   {
+//     where: { id: id },
+//     include:{
+//        model: Genres,
+//        attributes: ["name"],
+//        through: {attributes: []}
+//       }
+//   }
+//   );
+
+
+//_____________________________________________
 const getGameById = async (id, source)=>{
 
     const game = source === "API" ? getApiGamesById(id)
-     : await Videogame.findByPk(id);
+     : await Videogame.findOne(
+      {
+        where: { id: id },
+        include:{
+           model: Genres,
+           attributes: ["name"],
+           through: {attributes: []}
+          }
+      }
+      );
       return game;
 
 }
 module.exports= {
     getGameById
 };
+
+
+//ASI ESTABA TODO OK 
+//const getGameById = async (id, source)=>{
+
+// const game = source === "API" ? getApiGamesById(id)
+// : await Videogame.findByPk(id);
+//  return game;
+
+// }

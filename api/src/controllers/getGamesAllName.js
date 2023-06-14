@@ -1,17 +1,23 @@
 const axios = require("axios");
-const {Videogame} = require("../db");
+const {Videogame, Genres} = require("../db");
 const APIURL= "https://api.rawg.io/api/games";
 const {KEY} = process.env;
 const { Op } = require("sequelize");
 
-const bringAllGamesApi = async()=>{
-    const {data} = await axios.get(`${APIURL}?key=${KEY}`);
 
-    const response= data.results.map((game)=> {
+
+const bringAllGamesApi = async()=>{
+    let apiInfo= [];
+    for (let i= 1; i <= 5; i++) {
+      const {data} = await axios.get(`${APIURL}?key=${KEY}&page=${i}`);
+      apiInfo = [...apiInfo, ...data.results]
+    }    
+//---------------------------------------------------------
+    const response= apiInfo.map((game)=> {
         const mapApi= {
             id: game.id,
             name: game.name,
-            imagen: game.background_image,
+            image: game.background_image,
             platforms: game.platforms.map(b=> b.platform.name),
             released: game.released,
             rating: game.rating,
@@ -30,18 +36,32 @@ const getGamesName = async (name)=>{
     const gamesFilteredApi = allGames.filter( (detail) => 
     detail.name.toLowerCase().includes(name.toLowerCase()))
      
-   
+   //__________________________________________
      const gamesFilteredBD = await Videogame.findAll({
        where:{
         name: {[Op.iLike]:`%${name}%`}  
-      }
+      },
+      include:{
+        model: Genres,
+        attributes: ["name"],
+        through: {attributes: []}
+       }
+
      }) 
     return [...gamesFilteredApi, ...gamesFilteredBD]
  }
  //____________________________________________________
  const getGamesAll= async ()=>{
   
-    const responseBd= await Videogame.findAll();
+    const responseBd= await Videogame.findAll(
+    {
+      include:{
+         model: Genres,
+         attributes: ["name"],
+         through: {attributes: []}
+        }
+    }
+    );
   
     const responseApi = await bringAllGamesApi(); 
   
