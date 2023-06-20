@@ -1,0 +1,42 @@
+.oneCard{
+    border: 1px solid black;
+    width: fit-content;  
+    height: fit-content;
+    border-radius: 10px;
+    /* ------------ */
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    cursor: pointer; 
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out; 
+    background-color: pink;
+}
+.oneCard:hover{
+    transform: scale(1.05);
+} 
+
+/* .contenedorCard{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(8, 8, 107);
+    border: none;
+    border-radius: 50%;
+    padding: 25px;
+    cursor: pointer;  
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    }
+    .contenedorCard:hover{
+        transform: scale(1.05);
+    } */
+    
+    /* .btn{
+        border: 2px;
+        background: none;
+        color: yellow;
+    } */ 

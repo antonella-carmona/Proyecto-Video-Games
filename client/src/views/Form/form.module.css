@@ -1,0 +1,38 @@
+.containerFormulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 20px;
+    background-color:  rgb(243, 80, 180);
+    justify-content: center; 
+  }
+  
+  .containerFormulario form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .containerFormulario input {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 90%;
+    /* display: block; */
+  }
+
+  .containerFormulario select {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 90%;
+    /* display: block; */
+  }
+  
+  .containerFormulario button {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 30%;
+    align-self: center; 
+    width: fit-content; /* Ajusta el ancho del botón al contenido */
+   
+  }

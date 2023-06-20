@@ -12,7 +12,7 @@ const getGenres = async () =>{
   const responseApi = await data.results.map( gen => gen.name)
 
   //____________________________________________________________________________
-  //FALTA ALGO --> hace lo mismo
+  
   const mapName = responseApi.map((elm) => {
   
     return { name: elm };

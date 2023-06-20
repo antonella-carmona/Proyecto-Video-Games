@@ -1,0 +1,8 @@
+export const GETALLGAMES= "GETALLGAMES";
+export const GETBYNAMEGAME = "GETBYNAMEGAME";
+export const GETBYIDGAME = "GETBYIDGAME";
+export const GETGENRES = "GETGENRES";
+export const POSTGAME = "POSTGAME";
+export const DELETEGAME = "DELETEGAME";
+export const PUTGAME = "PUTGAME";
+export const ALLPLATFORMS = "ALLPLATFORMS";

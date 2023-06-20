@@ -48,7 +48,11 @@ const getGamesName = async (name)=>{
        }
 
      }) 
-    return [...gamesFilteredApi, ...gamesFilteredBD]
+    const todos= [...gamesFilteredApi, ...gamesFilteredBD]
+    if(todos.length) {
+      return todos}
+      else {
+    throw new Error("No se encontro ningun juego con ese nombre") }
  }
  //____________________________________________________
  const getGamesAll= async ()=>{
