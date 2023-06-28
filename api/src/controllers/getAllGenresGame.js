@@ -10,19 +10,22 @@ const getGenres = async () =>{
 
   //_______quedarme con todos los name de los generos de cada objeto--> map devuelve nuevo arr modificado______________
   const responseApi = await data.results.map( gen => gen.name)
-
+  // [{"Action","Indie", "Adventure"}]
   //____________________________________________________________________________
   
   const mapName = responseApi.map((elm) => {
   
-    return { name: elm };
+    // return { name: elm }; 
+    // return [ elm  ]
+    return  elm 
+     // [{{name:"Action"},{name:"Indie"}, {name:"Adventure"}}]
   });
   //____________________________________________________________________________
  //_________por cada objeto del arr agarra name y guarda en la bdd del models Genres_________ 
  //->forEach itera sobre el arr
   mapName.forEach(element => {
         Genres.findOrCreate({
-            where: {name: element.name}
+            where: {name: element}
         })
   });
 

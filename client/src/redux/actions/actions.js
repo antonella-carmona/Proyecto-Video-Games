@@ -1,6 +1,7 @@
 import axios from "axios";
-import { GETALLGAMES, GETBYNAMEGAME, GETBYIDGAME, GETGENRES, POSTGAME, DELETEGAME, PUTGAME, ALLPLATFORMS } from "../actionsTypes/index";
-
+import { GETALLGAMES, GETBYNAMEGAME, GETBYIDGAME, GETGENRES, POSTGAME, DELETEGAME, PUTGAME, 
+  ALLPLATFORMS,CLEAR_STATE, FILTER_CARD_GENRES, ORDER_CARDS, SORT_RATING, FILTER_GAMES } from "../actionsTypes/index";
+// poner try cach a todas las actions para ver los errrores
 export const getAllGames = ()=>{
   return async (dispatch)=> {
     const response = await axios.get("http://localhost:3001/videogames")
@@ -13,11 +14,16 @@ export const getAllGames = ()=>{
 //_____________________________________
 export const getAllGenres = ()=>{
     return async (dispatch)=> {
-        const response = await axios.get("http://localhost:3001/genres")
+        try {
+            const response = await axios.get("http://localhost:3001/genres")
         return dispatch({
             type: GETGENRES,
             payload: response.data
         })
+        } catch (error) {
+            console.log(error.response.data.error)
+        }
+        
       }
 }
 //_______________________________________
@@ -47,24 +53,35 @@ export const getById = (id) =>{
       }
 }
 //_____________________________________
-export const postGames= ()=>{
+export const postGames= (videogame)=>{
     return async (dispatch)=> {
-        const response = await axios.post(`http://localhost:3001/videogames`)
-        return dispatch({
-            type: POSTGAME,
-            payload: response
-        })
+        try {
+            const response = await axios.post("http://localhost:3001/videogames", videogame)
+            return dispatch({
+                type: POSTGAME,
+                payload: response.data
+            })
+        } catch (error) {
+            alert(error.response.data.error)
+        }
+       
       }
 }
 //_________________________________
 export const deleteGame = (id) =>{
     return async (dispatch)=> {
+      console.log("que id llega en la action?  ", id)
+      try {
         const response = await axios.delete(`http://localhost:3001/videogames/${id}`)
         return dispatch({
             type: DELETEGAME,
-            payload: response
+            payload: response.data
         })
+      
+      } catch (error) {
+        alert(error.response.data.error)
       }
+    }
 }
 //______________________________________
 export const putGame = (id) =>{
@@ -86,3 +103,43 @@ export const getAllPlatforms = ()=>{
       })
     }
   }
+  //________________________________________
+  //fn para limpiar
+  export const clear = ()=>{
+    return async (dispatch)=> {
+      return dispatch({
+          type: CLEAR_STATE,
+      })
+    }
+  }
+
+  //____________________________________________________-
+
+  export const filterCardGenres= (genero)=>{
+    return async (dispatch)=>{
+      console.log('parametro que me llega a la action:', genero);
+     return dispatch ({type: FILTER_CARD_GENRES, payload: genero})   
+    }
+}
+//_________________________________________________
+export const orderCards = (orden)=>{
+  return async (dispatch)=>{
+    // console.log('parametro que me llega a la action:', orden);
+   return dispatch ({type: ORDER_CARDS, payload: orden})   
+  }
+  
+}
+//________________________________________________________
+
+export const  sortRating = (rating)=> {
+  return (dispatch)=>{ 
+   return dispatch ({type: SORT_RATING, payload : rating})
+}
+}
+//_________________________________________________________
+export const  filterGames = (game)=> {
+  console.log("que me llego en la action? -->", game)
+  return (dispatch)=>{ 
+   return dispatch ({type: FILTER_GAMES, payload : game})
+}
+}

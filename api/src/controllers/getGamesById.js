@@ -32,19 +32,6 @@ const getApiGamesById = async (id)=>{
   }
   
 }
-//_____________________________________________
-//FN PARA TRAER TODO DE LA BDD FILTRADO 
-// const bD= await Videogame.findOne(
-//   {
-//     where: { id: id },
-//     include:{
-//        model: Genres,
-//        attributes: ["name"],
-//        through: {attributes: []}
-//       }
-//   }
-//   );
-
 
 //_____________________________________________
 const getGameById = async (id, source)=>{
@@ -68,11 +55,3 @@ module.exports= {
 };
 
 
-//ASI ESTABA TODO OK 
-//const getGameById = async (id, source)=>{
-
-// const game = source === "API" ? getApiGamesById(id)
-// : await Videogame.findByPk(id);
-//  return game;
-
-// }

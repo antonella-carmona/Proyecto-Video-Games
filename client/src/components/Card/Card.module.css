@@ -1,42 +1,43 @@
 .oneCard{
     border: 1px solid black;
-    width: fit-content;  
-    height: fit-content;
+    /* max-width: 300%;
+    max-height: 300%; */
     border-radius: 10px;
     /* ------------ */
     display: flex;
     flex-direction: column;
-    padding: 25px;
+    padding: 30px;
     cursor: pointer; 
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform 0.25s ease-out; 
-    background-color: pink;
+    background-color: #69977e;
+    font-weight: bold;
+    color: #e9e9e9;
+    box-shadow: inset 0px -6px 15px 10px rgb(41, 41, 41);
+
+    width: 250px;
+    height: 350px;
 }
 .oneCard:hover{
     transform: scale(1.05);
 } 
-
-/* .contenedorCard{
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(8, 8, 107);
-    border: none;
-    border-radius: 50%;
-    padding: 25px;
-    cursor: pointer;  
-    -moz-osx-font-smoothing: grayscale;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    transition: transform 0.25s ease-out;
-    }
-    .contenedorCard:hover{
-        transform: scale(1.05);
-    } */
+.imagen{
     
-    /* .btn{
-        border: 2px;
-        background: none;
-        color: yellow;
-    } */ 
+    width:200px;
+    height:250px;
+    margin-top: 35px;
+    margin-left: 33px;
+}
+
+.name{
+    font-size: 14px;
+       font-weight: bold;
+       color: black;
+   }
+
+   .genres{
+    margin-top: -40px;
+    color: black;
+}   

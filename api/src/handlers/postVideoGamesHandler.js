@@ -5,6 +5,7 @@ const {createGameBD} = require("../controllers/postGames")
 const postGamesHandler = async (req, res)=>{
   try {
     const {name, image ,description, released, rating, platforms, genres, created}= req.body;
+    
     const response= await createGameBD(name, image ,description, released, rating, platforms, genres, created);
    return res.status(200).json(response)
 

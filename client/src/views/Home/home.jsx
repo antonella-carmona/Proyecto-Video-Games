@@ -1,43 +1,38 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector} from "react-redux";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
-import {getAllGames} from "../../redux/actions/actions";
+import {getAllGames,clear} from "../../redux/actions/actions";
 import style from "./Home.module.css";
+import Loading from "../../components/Loader/Loader";
 
 // que haga dispatch despache la actions
 
 
 const Home = () =>{
   const dispatch = useDispatch();
-  // const allGames = useSelector(state=>state.allGames);
-  // const [filtered, setFiltered] = useState([]);
-  // const [search, setSearch] = useState("");
+  const allVgames = useSelector((state) => state.allGames) 
 //______________monta-actualiza-desmonta_____________________________________________________________
-//useEffect()--> maneja los ciclos de vidas de este component particular
+//ciclos de vidas de este component particular
   useEffect(()=>{
-  dispatch(getAllGames())
-  // setFiltered(allGames)
-  },[dispatch]); //--> cada vez que se ctualize algo de getAllGames
-//________________FN PARA NAVBAR -> SEARCH____________________________________________________________  
-// const handleChange= (event)=>{
-//   setSearch(event.target.value.ToLowerCase())
-// }
-// const handlerSubmit= (event)=>{
-//   event.preventDefault();
-//   if(search !== ""){
-//     const filt= filtered.filter((game) => 
-//     game.name.ToLowerCase().includes(search))
-//     return setFiltered(filt)
-//   }
-//   else{
-//   setFiltered(allGames)
-//   }
-// }
-//_____________________________________________________________________________
+  dispatch(getAllGames()) //--> montaje
+  
+  return()=>{
+    dispatch(clear())  //--> Limpieza | desmonta
+  }
+  },[dispatch]); //--> cada vez que se actualiza algo de getAllGames
+
+ //____________LOADER_______________________________________________
+if (allVgames.length === 0) {
+  return <div >
+    <Loading />
+  </div>
+} 
+//____________________________________________________________________________  
+
 
   return(
     <div className={style.contenedorHome}>
-        <h1 className={style.titleHome}>Home</h1>
+        {/* <h1 className={style.titleHome}>Home</h1> */}
         <CardsContainer/>
     </div>
   )

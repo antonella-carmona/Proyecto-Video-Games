@@ -6,15 +6,15 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* color degradado */
-    background: linear-gradient(
-        to left,
-        rgba(7,27,82,1) 0%,
-        rgba(0,128,128,1) 100%
-    ); 
-    background-color: rgb(5, 5, 91);
-    /* ----------------- */
+    
+    background-color: #0c442c;
     text-align: center;
+    /* ------------- */
+    
+    /* box-shadow: inset 0px -6px 15px 10px black;  */
+    /* background-size: auto;
+     background-repeat: repeat;
+     background-position: center; */
   }
   
   code {
@@ -23,9 +23,15 @@ body {
   }
 
 .contenedorHome{
-   display: flex;
+   /* display: flex;
    flex-direction: column;
-   align-items: center;
+   align-items: center; */
+   /* ------------- */
+
+ 
+   /* box-shadow: inset 0px -6px 15px 10px black;  */
+   /* background-size: auto;
+   background-position: center; */
 }
 
 .titleHome{
@@ -33,5 +39,5 @@ body {
     margin-bottom: 50px;
     font-size:15px;
     color: yellow;
-    /* font-family: "Bigelow Rules"; */
+
 }
