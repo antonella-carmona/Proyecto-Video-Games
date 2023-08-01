@@ -2,20 +2,29 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST
-} = process.env;
 //_______________________________________________________________________________
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
+// const {
+//   DB_USER, DB_PASSWORD, DB_HOST
+// } = process.env;
+
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
+
+//____________________________DEPLOY___________________________________________________
+const {
+  DB_USER, DB_PASSWORD, DB_HOST, DB_DATABASE, PORT
+} = process.env;
+
+//postgres:MgCN35CzbJr92iPZScsu@containers-us-west-70.railway.app:6957/railway
+
+const sequelize = new Sequelize(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${PORT}/${DB_DATABASE}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 
-
-// const sequelize = new Sequelize(DB_DEPLOY, {
-//   logging: false, // set to console.log to see the raw SQL queries
-//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-// });
+//CON ESTO TENEMOS UNA BASE DE DATOS VIRTUAL
 //_______________________________________________________________________________
 const basename = path.basename(__filename);
 
