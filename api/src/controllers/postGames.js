@@ -3,7 +3,7 @@ const {Videogame, Genres} = require("../db")
 //vamos a querer crearlo con el modelo videogame, utilizando metodo de sequelize
 //create, crea un objeto que tiene las especificaciones del models
 const createGameBD= async (name, image ,description, released, rating, platforms, genres, created)=>{
-    console.log("ñam",genres)
+    
     //____________________________________
    const newGame= await Videogame.create({
     name,
