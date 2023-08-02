@@ -4,7 +4,7 @@ import { GETALLGAMES, GETBYNAMEGAME, GETBYIDGAME, GETGENRES, POSTGAME, DELETEGAM
 // poner try cach a todas las actions para ver los errrores
 export const getAllGames = ()=>{
   return async (dispatch)=> {
-    const response = await axios.get("http://localhost:3001/videogames")
+    const response = await axios.get("/videogames")
     return dispatch({
         type: GETALLGAMES,
         payload: response.data
@@ -15,7 +15,7 @@ export const getAllGames = ()=>{
 export const getAllGenres = ()=>{
     return async (dispatch)=> {
         try {
-            const response = await axios.get("http://localhost:3001/genres")
+            const response = await axios.get("/genres")
         return dispatch({
             type: GETGENRES,
             payload: response.data
@@ -30,7 +30,7 @@ export const getAllGenres = ()=>{
 export const getAllByName = (name) =>{
     return async (dispatch)=> {
         try {
-            const response = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            const response = await axios.get(`/videogames?name=${name}`)
             return dispatch({
             type: GETBYNAMEGAME,
             payload: response.data
@@ -45,7 +45,7 @@ export const getAllByName = (name) =>{
 //______________________________________
 export const getById = (id) =>{
     return async (dispatch)=> {
-        const response = await axios.get(`http://localhost:3001/videogames/${id}`)
+        const response = await axios.get(`/videogames/${id}`)
         return dispatch({
             type: GETBYIDGAME,
             payload: response.data
@@ -56,7 +56,7 @@ export const getById = (id) =>{
 export const postGames= (videogame)=>{
     return async (dispatch)=> {
         try {
-            const response = await axios.post("http://localhost:3001/videogames", videogame)
+            const response = await axios.post("/videogames", videogame)
             return dispatch({
                 type: POSTGAME,
                 payload: response.data
@@ -72,7 +72,7 @@ export const deleteGame = (id) =>{
     return async (dispatch)=> {
       console.log("que id llega en la action?  ", id)
       try {
-        const response = await axios.delete(`http://localhost:3001/videogames/${id}`)
+        const response = await axios.delete(`/videogames/${id}`)
         return dispatch({
             type: DELETEGAME,
             payload: response.data
@@ -86,7 +86,7 @@ export const deleteGame = (id) =>{
 //______________________________________
 export const putGame = (id) =>{
     return async (dispatch)=> {
-        const response = await axios.put(`http://localhost:3001/videogames/${id}`)
+        const response = await axios.put(`/videogames/${id}`)
         return dispatch({
             type: PUTGAME,
             payload: response
@@ -96,7 +96,7 @@ export const putGame = (id) =>{
 //_______________________________________
 export const getAllPlatforms = ()=>{
     return async (dispatch)=> {
-      const response = await axios.get("http://localhost:3001/platforms")
+      const response = await axios.get("/platforms")
       return dispatch({
           type: ALLPLATFORMS,
           payload: response.data
